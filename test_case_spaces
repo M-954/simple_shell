@@ -1,5 +1,0 @@
-echo "Leading and trailing spaces"
-echo "Leading spaces"   
-echo "Trailing spaces"   
-echo "   Leading and trailing spaces   "   
-
