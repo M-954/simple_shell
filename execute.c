@@ -7,7 +7,7 @@ void execute(char *input)
 {
 	pid_t child;
 	char *token;
-	char del[] = " \n";
+	char del[] = " \n\t";
 	char *argv[MAXIMUM_BUFFER];
 	int i = 0;
 
@@ -19,30 +19,32 @@ void execute(char *input)
 		i++;
 	}
 	argv[i] = NULL;
-		if (_strchr(argv[0], '/') != NULL)
+	if (argv[0] == NULL)
+		return;
+	if (_strchr(argv[0], '/') != NULL)
+	{
+		if (access(argv[0], F_OK | X_OK) == 0)
 		{
-			if (access(argv[0], F_OK | X_OK) == 0)
+			child = fork();
+			if (child < 0)
 			{
-				child = fork();
-				if (child < 0)
+				perror("fork");
+				exit(EXIT_FAILURE);
+			}
+			if (child == 0)
+			{
+				if (execve(argv[0], argv, NULL) == -1)
 				{
-					perror("fork");
+					perror("execve failed");
 					exit(EXIT_FAILURE);
 				}
-				if (child == 0)
-				{
-					if (execve(argv[0], argv, NULL) == -1)
-					{
-						perror("execve failed");
-						exit(EXIT_FAILURE);
-					}
-				}
-				else
-					wait(NULL);
 			}
 			else
-				write(2, "command not found", 18);
+				wait(NULL);
 		}
 		else
-			_path(argv);
+			write(2, "command not found", 18);
+	}
+	else
+		_path(argv);
 }
