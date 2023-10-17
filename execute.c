@@ -40,10 +40,7 @@ void execute(char *input)
 				wait(NULL);
 		}
 		else
-		{
-			perror("command not found");
-			exit(EXIT_FAILURE);
-		}
+			write(2, "command not found", 18);
 	}
 	else
 		_path(argv);
