@@ -34,10 +34,7 @@ void execute(char *input)
 			if (child == 0)
 			{
 				if (execve(argv[0], argv, NULL) == -1)
-				{
-					perror("execve failed");
 					exit(EXIT_FAILURE);
-				}
 			}
 			else
 				wait(NULL);

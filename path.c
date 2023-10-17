@@ -27,12 +27,11 @@ void _path(char *argv[])
 			commandcount++;
 			child = fork();
 			if (child < 0)
-			{
 				exit(EXIT_FAILURE);
-			}
 			if (child == 0)
 			{
 				execve(cmds_fullpath, argv, NULL);
+				exit(EXIT_FAILURE);
 			}
 			else
 				wait(NULL);
