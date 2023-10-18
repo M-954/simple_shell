@@ -11,6 +11,7 @@ void _path(char *argv[])
 	char cmds_fullpath[MAXIMUM_BUFFER];
 	char *newpath, *tokenpath;
 	pid_t child;
+	int status;
 
 	newpath = _strdup(path);
 	if (newpath == NULL)
@@ -34,12 +35,12 @@ void _path(char *argv[])
 				exit(EXIT_FAILURE);
 			}
 			else
-				wait(NULL);
-		}
-		else
-		{
-			write(2, "command not found", 18);
-			exit(2);
+			{
+				waitpid(child, &status, 0);
+				if (WIFEXITED(status))
+				{
+				}
+			}
 		}
 		if (commandcount == 1)
 		{
@@ -47,6 +48,11 @@ void _path(char *argv[])
 			return;
 		}
 		tokenpath = strtok(NULL, delimeter);
+	}
+	if (commandcount == 0)
+	{
+		perror("command not found");
+		return;
 	}
 	free(newpath);
 }
