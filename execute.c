@@ -38,16 +38,7 @@ void execute(char *input)
 					exit(2);
 			}
 			else
-			{
-				waitpid(child, &status, 0);
-				if (WIFEXITED(status))
-				{
-					if (WEXITSTATUS(status) == 2)
-					{
-						status = 2;
-					}
-				}
-			}
+				wait(&status);
 		}
 		else
 		{
@@ -58,5 +49,4 @@ void execute(char *input)
 	}
 	else
 		_path(argv);
-	exit(status);
 }

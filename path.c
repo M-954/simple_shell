@@ -35,12 +35,7 @@ void _path(char *argv[])
 				exit(EXIT_FAILURE);
 			}
 			else
-			{
-				waitpid(child, &status, 0);
-				if (WIFEXITED(status))
-				{
-				}
-			}
+				wait(&status);
 		}
 		if (commandcount == 1)
 		{
