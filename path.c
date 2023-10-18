@@ -38,7 +38,7 @@ void _path(char *argv[])
 		}
 		else
 		{
-			write(2, "command not found", 18;
+			write(2, "command not found", 18);
 			exit(2);
 		}
 		if (commandcount == 1)
