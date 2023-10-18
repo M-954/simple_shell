@@ -28,10 +28,15 @@ void _path(char *argv[])
 			commandcount++;
 			child = fork();
 			if (child < 0)
+			{
+				fprintf(stderr, "Fork failed\n");
 				exit(EXIT_FAILURE);
+			}
 			if (child == 0)
 			{
+				fprintf(stderr, "before execve\n");
 				execve(cmds_fullpath, argv, NULL);
+				fprintf(stderr, "after execve\n");
 				exit(EXIT_FAILURE);
 			}
 			else

@@ -10,6 +10,7 @@ void execute(char *input)
 	char del[] = " \n\t";
 	char *argv[MAXIMUM_BUFFER];
 	int i = 0;
+	int status;
 
 	token = strtok(input, del);
 	while (token)
@@ -34,15 +35,20 @@ void execute(char *input)
 			if (child == 0)
 			{
 				if (execve(argv[0], argv, NULL) == -1)
-					exit(EXIT_FAILURE);
+					exit(2);
 			}
 			else
-				wait(NULL);
+			{
+				waitpid(child, &status, 0);
+				if (WIFEXITED(status))
+				{
+				}
+			}
 		}
 		else
 		{
 			perror("command not found");
-			exit(EXIT_FAILURE);
+			exit(2);
 		}
 	}
 	else
