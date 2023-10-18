@@ -42,15 +42,21 @@ void execute(char *input)
 				waitpid(child, &status, 0);
 				if (WIFEXITED(status))
 				{
+					if (WEXITSTATUS(status) == 2)
+					{
+						status = 2;
+					}
 				}
 			}
 		}
 		else
 		{
 			perror("command not found");
+			status = 2;
 			exit(2);
 		}
 	}
 	else
 		_path(argv);
+	exit(status);
 }
