@@ -36,11 +36,11 @@ void _path(char *argv[])
 			else
 				wait(NULL);
 		}
-		/*else
+		else
 		{
-			perror("command not found");
+			write(2, "command not found", 18;
 			exit(EXIT_FAILURE);
-		}*/
+		}
 		if (commandcount == 1)
 		{
 			free(newpath);
