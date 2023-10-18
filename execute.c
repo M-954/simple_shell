@@ -39,11 +39,11 @@ void execute(char *input)
 			else
 				wait(NULL);
 		}
-		else
+		/*else
 		{
 			perror("command not found");
 			exit(EXIT_FAILURE);
-		}
+		}*/
 	}
 	else
 		_path(argv);
