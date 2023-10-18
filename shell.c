@@ -35,6 +35,7 @@ int main(void)
 		if (_strcmp(command, "env") == 0)
 		{
 			_env();
+			continue;
 		}
 		if (_strcmp(command, "exit") == 0)
 		{
