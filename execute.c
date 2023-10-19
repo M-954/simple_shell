@@ -1,4 +1,5 @@
 #include "shell.h"
+void execute(char *input);
 /**
  * execute - executes a command and handles PATH
  * @input: the command to execute
@@ -35,10 +36,7 @@ void execute(char *input)
 			if (child == 0)
 			{
 				if (execve(argv[0], argv, NULL) == -1)
-				{
-					perror("execve failed");
-					exit(2);
-				}
+					exit(EXIT_FAILURE);
 			}
 			else
 				wait(&status);

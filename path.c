@@ -1,4 +1,5 @@
 #include "shell.h"
+void _path(char *argv[]);
 /**
  * _path - handles the shell's path
  * @argv: pointer to an array of strings
@@ -46,15 +47,7 @@ void _path(char *argv[])
 	}
 	if (commandcount == 0)
 	{
-		char error_message[] = " not found\n";
-		write(2, argv[0], _strlen(argv[0]));
-		write(2, ": ", 2);
-		write(2, argv[0], _strlen(argv[0]));
-		write(2, error_message, _strlen(error_message));
-		/*write(2, argv[0], _strlen(argv[0]));
-		write(2, ": ", 2);
-		write(2, "not found", 9);
-		write(2, "\n", 1);*/
+		write(2, "command not founf", 18);
 		return;
 	}
 	free(newpath);
