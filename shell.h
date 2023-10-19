@@ -20,7 +20,6 @@ void prime_num(int n);
 void print_output(char *str);
 void execute(char *input);
 void display_prompt(void);
-void path(char *command);
 char *_strncat(char *dest, char *src, int n);
 char *_strcat(char *dest, char *src);
 int _strlen(char *s);

@@ -39,8 +39,8 @@ int main(void)
 		}
 		if (_strcmp(command, "exit") == 0)
 		{
-			free(command);
-			exit(EXIT_SUCCESS);
+			/*free(command);*/
+			break;
 		}
 		execute(command);
 	}

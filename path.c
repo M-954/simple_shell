@@ -46,7 +46,15 @@ void _path(char *argv[])
 	}
 	if (commandcount == 0)
 	{
-		perror("command not found");
+		char error_message[] = " not found\n";
+		write(2, argv[0], _strlen(argv[0]));
+		write(2, ": ", 2);
+		write(2, argv[0], _strlen(argv[0]));
+		write(2, error_message, _strlen(error_message));
+		/*write(2, argv[0], _strlen(argv[0]));
+		write(2, ": ", 2);
+		write(2, "not found", 9);
+		write(2, "\n", 1);*/
 		return;
 	}
 	free(newpath);

@@ -35,7 +35,10 @@ void execute(char *input)
 			if (child == 0)
 			{
 				if (execve(argv[0], argv, NULL) == -1)
+				{
+					perror("execve failed");
 					exit(2);
+				}
 			}
 			else
 				wait(&status);
@@ -43,8 +46,7 @@ void execute(char *input)
 		else
 		{
 			perror("command not found");
-			status = 2;
-			exit(2);
+			exit(EXIT_FAILURE);
 		}
 	}
 	else
